@@ -29,6 +29,7 @@ public class ProgramEmployee {
             System.out.print("Salary: ");
             Double salary = sc.nextDouble();
             person[i] = new Employee(id, name, salary);
+            employees.add(person[i]);
         }
 
         for (int i = 0; i < quantityEmployees; i++) {
@@ -36,9 +37,29 @@ public class ProgramEmployee {
                 if(person[i].getId().equals(person[j].getId()) && i != j) {
                     System.out.println("ERROR: Existent Id");
                     System.out.println("Please, change the id of the " + person[i].getName() + ": ");
-                    person[i].setId(sc.nextInt());
+                    person[j].setId(sc.nextInt());
                 }
             }
+        }
+
+        System.out.print("Enter the employee id that will have salary increase: ");
+        int idForIncrease = sc.nextInt();
+
+        System.out.print("Enter the percentage: ");
+        double percentage = sc.nextDouble();
+
+        if(employees.contains(idForIncrease)) {
+            for(int i = 0; i < quantityEmployees; i++) {
+                if(person[i].getId() == idForIncrease) {
+                    person[i].setSalary(percentage);
+                }
+            }
+        }
+
+        System.out.println();
+
+        for(Employee persons : employees) {
+            System.out.println(persons);
         }
 
         sc.close();
